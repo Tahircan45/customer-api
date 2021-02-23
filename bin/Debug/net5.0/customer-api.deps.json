@@ -35,6 +35,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.3",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "Swashbuckle.AspNetCore": "6.0.7",
+          "Swashbuckle.AspNetCore.Annotations": "6.0.7",
           "System.IdentityModel.Tokens.Jwt": "6.8.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "5.0.0.0",
@@ -1536,6 +1537,20 @@
           "Swashbuckle.AspNetCore.Swagger": "6.0.7",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.0.7",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.0.7"
+        }
+      },
+      "Swashbuckle.AspNetCore.Annotations/6.0.7": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.0.7"
+        },
+        "runtime": {
+          "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "assemblyVersion": "6.0.7.0",
+            "fileVersion": "6.0.7.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.Swagger/6.0.7": {
@@ -4931,6 +4946,13 @@
       "sha512": "sha512-Txpe0oaLHrbGYajEVMLlgbnE3MMXyfqmzlf3eD/N5sqyXHN11eFkL6oq6weEoRkAq/+dvLzh5EKR5ZHTKI+bUA==",
       "path": "swashbuckle.aspnetcore/6.0.7",
       "hashPath": "swashbuckle.aspnetcore.6.0.7.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.Annotations/6.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bLFjlpTWehZqjofbKnTwHQP9+Wylv26BzvQ7J9UziXImAwacqari8gt+xQQEV31Mj5PcPw2naB0Z1oTOlt5Mjg==",
+      "path": "swashbuckle.aspnetcore.annotations/6.0.7",
+      "hashPath": "swashbuckle.aspnetcore.annotations.6.0.7.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/6.0.7": {
       "type": "package",

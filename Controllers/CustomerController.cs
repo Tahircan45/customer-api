@@ -11,6 +11,7 @@ using customer_api.Helpers;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using customer_api.JWT;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace customer_api.Controllers
 {
@@ -33,6 +34,7 @@ namespace customer_api.Controllers
         }
         [AllowAnonymous]
         [HttpPost("Authorize")]
+        [SwaggerOperation(Summary = "Use for Authorize",Description = "Username:'user1'  Password:'pass1'")]
         public IActionResult AuthUser([FromQuery] UserAuth userAuth)
         {
             var token = _jWTAuthManager.Auth(userAuth.UserName, userAuth.Password);

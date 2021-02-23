@@ -3,3 +3,7 @@
 .vs/customer-api/v16/.suo
 *.cache
 .vs/customer-api/v16/.suo
+*.cache
+obj/Debug/net5.0/customer-api.csproj.CoreCompileInputs.cache
+*.cache
+obj/project.assets.json

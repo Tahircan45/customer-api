@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KS30SLVe48Ix6DwJ4rQ9NIZbSnCrBaF9sCPv13L18U0IhlNHcQenO/7LbnG1/h3i9DtVceJSdNkuo/OeJhTvGQ==",
+  "dgSpecHash": "ZbTsj6zIK+PhcPHhVA7DnVe86tiaHJO0r6ysASEeZg1pZqJaTNdEM0p8xdqVDZEtn4Aa2YpghpLuWmcPpZSh/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\tahir\\source\\repos\\customer-api\\customer-api.csproj",
   "expectedPackageFiles": [
@@ -107,6 +107,7 @@
     "C:\\Users\\tahir\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\tahir\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
     "C:\\Users\\tahir\\.nuget\\packages\\swashbuckle.aspnetcore\\6.0.7\\swashbuckle.aspnetcore.6.0.7.nupkg.sha512",
+    "C:\\Users\\tahir\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.0.7\\swashbuckle.aspnetcore.annotations.6.0.7.nupkg.sha512",
     "C:\\Users\\tahir\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.0.7\\swashbuckle.aspnetcore.swagger.6.0.7.nupkg.sha512",
     "C:\\Users\\tahir\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.0.7\\swashbuckle.aspnetcore.swaggergen.6.0.7.nupkg.sha512",
     "C:\\Users\\tahir\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.0.7\\swashbuckle.aspnetcore.swaggerui.6.0.7.nupkg.sha512",
