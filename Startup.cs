@@ -69,13 +69,13 @@ namespace customer_api
             services.AddTransient<CustomerService>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "customer_api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "customer_api", Version = "v1",Description= "UserName: user1 \n Password: pass1" });
                 OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
                 {
                     Name = "Bearer",
                     BearerFormat = "JWT",
                     Scheme = "bearer",
-                    Description = "Specify the authorization token.",
+                    Description = "Default Login UserName: user1  Password: pass1",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
                 };

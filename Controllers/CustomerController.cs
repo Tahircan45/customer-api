@@ -32,8 +32,8 @@ namespace customer_api.Controllers
             _jWTAuthManager = jWTAuthManager;
         }
         [AllowAnonymous]
-        [HttpPost("AuthUser")]
-        public IActionResult AuthUser([FromBody] UserAuth userAuth)
+        [HttpPost("Authorize")]
+        public IActionResult AuthUser([FromQuery] UserAuth userAuth)
         {
             var token = _jWTAuthManager.Auth(userAuth.UserName, userAuth.Password);
             if (token == null)
