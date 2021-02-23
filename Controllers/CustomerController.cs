@@ -9,24 +9,37 @@ using customer_api.Responses;
 using customer_api.Filters;
 using customer_api.Helpers;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using customer_api.JWT;
 
 namespace customer_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustomerController : ControllerBase
     {
+        private readonly IJWTAuthManager _jWTAuthManager;
         private readonly IUriService _uriService;
         private readonly IMapper _mapper;
         private readonly CustomerService _customerService;
 
-        public CustomerController(IMapper mapper, CustomerService customerService,IUriService uriService)
+        public CustomerController(IMapper mapper, CustomerService customerService,IUriService uriService, IJWTAuthManager jWTAuthManager)
         {
             _mapper = mapper;
             _customerService = customerService;
             _uriService = uriService;
+            _jWTAuthManager = jWTAuthManager;
         }
-
+        [AllowAnonymous]
+        [HttpPost("AuthUser")]
+        public IActionResult AuthUser([FromBody] UserAuth userAuth)
+        {
+            var token = _jWTAuthManager.Auth(userAuth.UserName, userAuth.Password);
+            if (token == null)
+                return Unauthorized();
+            return Ok(token);
+        }
         // GET: api/Customers
         [HttpGet]
         public async Task<ActionResult> GetCustomers([FromQuery] PaginationFilter filter)

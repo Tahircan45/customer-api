@@ -16,6 +16,10 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using customer_api.Service;
 using Microsoft.AspNetCore.Http;
+using customer_api.JWT;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace customer_api
 {
@@ -31,6 +35,27 @@ namespace customer_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var Key = "this my test key";
+            services.AddControllers();
+            services.AddSingleton<IJWTAuthManager>(new JWTAuthManager(Key));
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+
+                };
+            });
             services.AddHttpContextAccessor();
             services.AddSingleton<IUriService>(o =>
             {
@@ -45,6 +70,31 @@ namespace customer_api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "customer_api", Version = "v1" });
+                OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+                {
+                    Name = "Bearer",
+                    BearerFormat = "JWT",
+                    Scheme = "bearer",
+                    Description = "Specify the authorization token.",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                };
+                c.AddSecurityDefinition("jwt_auth", securityDefinition);
+
+                // Make sure swagger UI requires a Bearer token specified
+                OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+                {
+                    Reference = new OpenApiReference()
+                    {
+                        Id = "jwt_auth",
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+{
+                {securityScheme, new string[] { }},
+};
+                c.AddSecurityRequirement(securityRequirements);
             });
             services.AddDbContext<CustomerDBContext>(
              options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
@@ -63,7 +113,8 @@ namespace customer_api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
