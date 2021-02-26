@@ -33,8 +33,8 @@ namespace customer_api.Controllers
             _jWTAuthManager = jWTAuthManager;
         }
         [AllowAnonymous]
-        [HttpPost("Authorize")]
-        [SwaggerOperation(Summary = "Use for Authorize",Description = "Username:'user1'  Password:'pass1'")]
+        [HttpPost("Auth")]
+        [SwaggerOperation(Summary = "Get Access Token", Description = "Username:'user1' | Password:'pass1'")]
         public IActionResult AuthUser([FromQuery] UserAuth userAuth)
         {
             var token = _jWTAuthManager.Auth(userAuth.UserName, userAuth.Password);
