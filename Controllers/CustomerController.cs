@@ -72,6 +72,18 @@ namespace customer_api.Controllers
             var response = new Response<CustomerViewModel>(customerViewModel){Message="Found", Succeeded = true};
             return Ok(response);
         }
+        [HttpGet("search/{keyword}")]
+        public async Task<ActionResult> Search(string keyword)
+        {
+            var list = await _customerService.Search(keyword);
+            if (list.Count == 0)
+            {
+                return NotFound(new Response<List<CustomerViewModel>>(null) { Message = "0 Result", Succeeded = false });
+            }
+            var viewList = _mapper.Map<List<CustomerViewModel>>(list);
+            var response = new Response<List<CustomerViewModel>>(viewList) { Message = $"{list.Count} Results Found", Succeeded = true };
+            return Ok(response);
+        }
         
         // PUT: api/Customers/5
         [HttpPut("{id}")]

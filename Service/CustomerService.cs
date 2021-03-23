@@ -69,6 +69,16 @@ namespace customer_api.Service
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<List<Customer>> Search(string keyword)
+        {
+            var list = await _context.Customers.Where(c => 
+                                        c.first_name.Contains(keyword) ||
+                                        c.last_name.Contains(keyword) ||
+                                        c.phone1.Contains(keyword) ||
+                                        c.email.Contains(keyword)||
+                                        c.city.Contains(keyword)).ToListAsync();
+            return list;
+        }
         public async Task<int> TotalRecord()
         {
             return await _context.Customers.CountAsync();
